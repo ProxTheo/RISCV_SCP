@@ -1,5 +1,5 @@
 module Register_File #(parameter WIDTH = 32) (
-	input clk, WE,
+	input clk, WE, reset,
 	input [4:0] Rs1, Rs2, Rd, Debug_Source,
 	input [WIDTH-1:0] WD,
 	output [WIDTH-1:0] RD1, RD2, Debug_Out
@@ -21,7 +21,7 @@ module Register_File #(parameter WIDTH = 32) (
 				.reset(reset),
 				.WE(WE && Enable_Wires[i]),
 				.DATA(WD),
-				.OUT(Reg_Out[i])
+				.DATA_OUT(Reg_Out[i])
 				);
 		end
    endgenerate

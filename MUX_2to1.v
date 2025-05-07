@@ -6,9 +6,9 @@ module MUX_2to1 #(parameter WIDTH = 32) (
 	
 	always @(*) begin
 		if (SEL) begin
-			OUT <= DATA1;
+			DATA_OUT <= DATA1;
 		end else begin
-			OUT <= DATA0;
+			DATA_OUT <= DATA0;
 		end
 	end
 	

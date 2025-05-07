@@ -43,8 +43,6 @@ MUX_2to1 mux_PC (
 );
 
 // INSTRUCTION MEMORY
-wire [WIDTH-1:0] INSTRUCTION;
-
 Memory_INST mem_inst (
     .ADDR(PC),
     .RD(INSTRUCTION)
@@ -64,7 +62,7 @@ wire [WIDTH-1:0] RD1, RD2;
 Register_File register_file (
     .clk(clk),
     .WE(RegWrite),
-    .reset(reset)
+    .reset(reset),
     .Rs1(Rs1),
     .Rs2(Rs2),
     .Rd(Rd),
@@ -126,7 +124,7 @@ MUX_4to1 mux_WriteData (
     .DATA0(ALUResult),
     .DATA1(ReadData),
     .DATA2(PCPlus4),
-    .DATA3(32'd0)
+    .DATA3(32'd0),
     .SEL(ResultSrc),
     .DATA_OUT(Result)
 );

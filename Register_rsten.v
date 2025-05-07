@@ -5,7 +5,7 @@ module Register_rsten #(parameter WIDTH=8) (
     );
 
 initial begin
-	OUT<=0;
+	DATA_OUT<=0;
 end	
 	 
 always@(posedge clk) begin
