@@ -1,7 +1,8 @@
 module ALU #(parameter WIDTH = 32) (
 	input [WIDTH-1:0] SrcA, SrcB,
 	input [2:0] ALUControl,
-	output reg [WIDTH-1:0] ALUResult
+	output reg [WIDTH-1:0] ALUResult,
+	output Zero
 	);
 	
 	always @(*) begin
@@ -14,6 +15,8 @@ module ALU #(parameter WIDTH = 32) (
 			default: ALUResult <= SrcA;
 		endcase
 	end
+
+	assign Zero = ~|ALUResult; 
 
 endmodule	
 	

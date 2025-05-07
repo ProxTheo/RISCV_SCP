@@ -1,7 +1,7 @@
 module MUX_2to1 #(parameter WIDTH = 32) (
 	input [WIDTH-1:0] DATA0, DATA1,
 	input SEL,
-	output reg [WIDTH-1:0] OUT	
+	output reg [WIDTH-1:0] DATA_OUT	
 );
 	
 	always @(*) begin

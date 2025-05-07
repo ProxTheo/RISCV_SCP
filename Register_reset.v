@@ -1,14 +1,14 @@
 module Register_reset #(parameter WIDTH = 32) (
 	input clk, reset,
 	input [WIDTH-1:0] DATA,
-	output reg [WIDTH-1:0] OUT
+	output reg [WIDTH-1:0] DATA_OUT
 );
 
 	always @(posedge clk) begin
 		if (reset) begin
-			OUT <= 0;
+			DATA_OUT <= {WIDTH{1'b0}};
 		end else begin
-			OUT <= DATA;
+			DATA_OUT <= DATA;
 		end
 	end
 	
