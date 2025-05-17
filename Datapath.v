@@ -1,8 +1,8 @@
 module Datapath #(parameter WIDTH = 32) (
     input clk, reset,
     input [4:0] Debug_Source, 
-    input RegWrite, MemWrite, PCSrc, ALUSrc,
-    input [1:0] ImmSrc, ResultSrc,
+    input RegWrite, MemWrite, ALUSrc,
+    input [1:0] ImmSrc, ResultSrc, PCSrc,
     input [2:0] ALUControl,
     output [WIDTH-1:0] Debug_Out, Debug_PC, INSTRUCTION,
     output Zero
@@ -35,9 +35,11 @@ Adder adder_PCTarget (
 );
 
 // PC MUX
-MUX_2to1 mux_PC (
+MUX_4to1 mux_PC (
     .DATA0(PCPlus4),
     .DATA1(PCTarget),
+    .DATA2(Result),
+    .DATA3(32'b0),
     .SEL(PCSrc),
     .DATA_OUT(PCNext)
 );
@@ -73,6 +75,9 @@ Register_File register_file (
     .Debug_Out(Debug_Out)
 );
 
+MUX_2to1 mux_
+
+
 // Extender
 wire [WIDTH-1:0] ImmExt;
 
@@ -83,10 +88,9 @@ Extender extender (
 );
 
 // ALU MUX
-wire [WIDTH-1:0] SrcA, SrcB, WriteData;
+wire [WIDTH-1:0] SrcA, SrcB;
 
 assign SrcA = RD1;
-assign WriteData = RD2;
 
 MUX_2to1 mux_SrcB (
     .DATA0(RD2),
@@ -107,7 +111,7 @@ ALU alu (
 );
 
 // Data Memory
-wire [WIDTH-1:0] ReadData;
+wire [WIDTH-1:0] ReadData, WriteData;
 
 Memory_DATA mem_data (
     .clk(clk),
@@ -117,14 +121,40 @@ Memory_DATA mem_data (
     .RD(ReadData)
 );
 
+MUX_4to1 mux_store (
+    .SEL(StoreSrc),
+    .DATA0(SrcB),
+    .DATA1({ReadData[31:16], SrcB[15:0]}),
+    .DATA2({ReadData[31:8], SrcB[7:0]}),
+    .DATA3(32'b0),
+    .DATA_OUT(WriteData)
+);
+
+
 // RF WriteData MUX
-wire [WIDTH-1:0] Result;
+wire [WIDTH-1:0] Result, ExtendedMemory, AfterPCSelect;
+
+Extender_Load extender_load (
+    .isSigned(isSigned),
+    .isByte(isByte),
+    .INPUT(ReadData),
+    .OUTPUT(ExtendedMemory)
+);
+
+MUX_2to1 mux_PCSelection (
+    .SEL(PCRFSelect)
+    .DATA0(PCPlus4)
+    .DATA1(PCTarget)
+    .DATA_OUT(AfterPCSelect)
+
+);
+
 
 MUX_4to1 mux_WriteData (
     .DATA0(ALUResult),
     .DATA1(ReadData),
-    .DATA2(PCPlus4),
-    .DATA3(32'd0),
+    .DATA2(ExtendedMemory),
+    .DATA3(AfterPCSelect),
     .SEL(ResultSrc),
     .DATA_OUT(Result)
 );
