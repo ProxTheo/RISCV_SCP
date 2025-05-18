@@ -5,25 +5,16 @@ module UART_TX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
     output reg TX_Serial, TX_BUSY
     );
 
-
     localparam DIV = FREQ / BAUDRATE;
 
-    // FSM States
-    localparam IDLE = 2'b00,
-               START_BIT = 2'b01,
-               DATA = 2'b10,
-               STOP_BIT = 2'b11;
-
-
     reg [13:0] baud_counter;
-    reg [3:0] index, 
+    reg [4:0] index;
     reg [9:0] TX_SHIFT_REG;
     reg tick;
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             baud_counter <= 0;
-            state <= IDLE;
             index <= 0;
             TX_SHIFT_REG <= 0;
             TX_Serial <= 1'b1;
@@ -54,7 +45,10 @@ module UART_TX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                 TX_BUSY <= 1'b1;
                 index <= 0;
                 baud_counter <= 0;
-            end
-        end
+            end else begin
+					TX_Serial <= 1'b1;
+				end
+        end 
+				
     end
 endmodule
