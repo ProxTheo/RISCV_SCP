@@ -2,10 +2,16 @@ module Datapath #(parameter WIDTH = 32) (
     input clk, reset,
     input [4:0] Debug_Source, 
     input RegWrite, MemWrite, ALUSrc,
-    input [1:0] ImmSrc, ResultSrc, PCSrc,
+    input [2:0] ImmSrc,
+	input [1:0] ResultSrc, PCSrc,
     input [2:0] ALUControl,
     output [WIDTH-1:0] Debug_Out, Debug_PC, INSTRUCTION,
-    output Zero
+    output Zero,
+	// NEW
+	
+	input [1:0] StoreSrc,
+	input isSigned, isByte,
+	input PCRFSelect
 );
 
 // PC Register
@@ -75,7 +81,7 @@ Register_File register_file (
     .Debug_Out(Debug_Out)
 );
 
-MUX_2to1 mux_
+//MUX_2to1 mux_
 
 
 // Extender
@@ -84,7 +90,7 @@ wire [WIDTH-1:0] ImmExt;
 Extender extender (
     .INSTRUCTION(INSTRUCTION),
     .ImmSrc(ImmSrc),
-    .ImmExt(ImmExt),
+    .ImmExt(ImmExt)
 );
 
 // ALU MUX
@@ -142,9 +148,9 @@ Extender_Load extender_load (
 );
 
 MUX_2to1 mux_PCSelection (
-    .SEL(PCRFSelect)
-    .DATA0(PCPlus4)
-    .DATA1(PCTarget)
+    .SEL(PCRFSelect),
+    .DATA0(PCPlus4),
+    .DATA1(PCTarget),
     .DATA_OUT(AfterPCSelect)
 
 );
