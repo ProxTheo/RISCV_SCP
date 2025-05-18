@@ -2,14 +2,14 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
     input clk, reset,
     input RX_Serial,
     output reg [7:0] RX_OUT,
-    output RX_done
+    output reg RX_done
     );
 
     localparam DIV = FREQ / BAUDRATE;
 
     reg [13:0] baud_counter;
     reg [1:0] state;
-    reg [3:0] index, 
+    reg [3:0] index;
     reg [7:0] RX_SHIFT_REG;
 
 
