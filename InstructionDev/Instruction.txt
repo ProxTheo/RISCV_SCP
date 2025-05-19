@@ -1,0 +1,49 @@
+00	addi r1, r0, 5 			# r1 = 5
+04	slli r2, r1, 2 			# r2 = 20
+08	xor r3, r1, r2 			# r3 = 17
+0C	sub r4, r3, r2 			# r4 = -3
+10	sll r5, r4, r1 			# r5 = -96
+14  auipc r6, 0	   			# r6 = 20
+18  srai r7, r2, 1 			# r7 = 10
+1C  or r8, r7, r5  			# r8 = -86
+20  andi r9, r6, 4 			# r9 = 4
+24  slt r10, r5, r6			# r10 = 1
+28  sltu r11, r5, r6		# r11 = 0
+2C  bne r2, r6, 16			# Not taken 0x38
+30  beq r2, r6, 16			# Taken 0x40
+34  
+38  add r2, r3, r4			# NT r2 = 14
+3C  
+40  add r2, r6, r8			# r2 = -66
+44  sb r2, 10(r7)			# [10] =  0x0000_00BE, 190
+48  lb r12, 10(r7) 			# r12 = -66
+4C  lbu r13, 10(r7)			# r13 = 190
+50  bltu r12, r13, 16		# Not taken 0x60
+54  blt r12, r13, 16		# Taken 0x64
+58  
+5C  
+60  jal r30, -96			# If bltu is taken, r30 = 84, PC->0x0 ERROR
+64  jal r30, 12				# If blt taken, r30 = 88, PC->0x70
+68  
+6C  
+70  sra r14, r5, r1 		# r14 = -3
+74  srl r15, r5, r1 		# r15 = 134217725
+78  bge r14, r15, 12		# Not taken 0x84
+7C  bgeu r14, r15, 12		# Taken 0x88
+80  
+84  jal r30, -132 			# If bge is taken, r30 = 0x88, PC->0x0 ERROR
+88  sh r15, 20(r6)			# [20] = 0x0000_FFFD, 65533
+8C  sw r15, 4(r9) 			# [4] = 0x07FF_FFFD, 134217725
+90  lhu r16, 20(r6)			# r16 = 655533
+94  lh r17, 4(r9)			# r17 = -3
+98  lui r18, 0xFFFF0		# r18 = -65536
+9C  and r19, r15, r18		# r19 = 134152192
+A0  slti r20, r19, 0x800 	# r20 = 0
+A4  sltiu r21, r19, 0x800	# r21 = 1
+A8  ori r22, r21, 0x0FE 	# r22 = 255
+AC  xori r23, r22, 0x0AA	# r23 = 85
+B0  jalr r31, r13, 0x002	# r31 = 0xB4 = 180
+B4  
+B8  
+BC  
+C0  srli r24, r23, 0x002	# r24 = 21
