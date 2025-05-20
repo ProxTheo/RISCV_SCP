@@ -6,7 +6,7 @@ module Memory_INST #(parameter BYTE_SIZE=4, ADDR_WIDTH=32)(
 reg [7:0] mem [255:0];
 
 initial begin
-$readmemh("Instructions.hex", mem, 0); // You will need this for real tests
+	$readmemh("Instructions.hex", mem, 0); // You will need this for real tests
 end
 
 genvar i;

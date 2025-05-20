@@ -1,18 +1,43 @@
 module Datapath #(parameter WIDTH = 32) (
     input clk, reset,
     input [4:0] Debug_Source, 
-    input RegWrite, MemWrite, ALUSrc,
-    input [2:0] ImmSrc,
-	input [1:0] ResultSrc, PCSrc,
-    input [2:0] ALUControl,
-    output [WIDTH-1:0] Debug_Out, Debug_PC, INSTRUCTION,
-    output Zero,
-	// NEW
+    output [WIDTH-1:0] Debug_Out, Debug_PC,
 	
+	// ------ NEW -------- //
+
+	output [WIDTH-1:0] INSTRUCTION,
+	output ZeroBit, CMPBit,
+
+	input [2:0] ImmSrc,
+	input ALUSrcA, ALUSrcB,
+	input [2:0] ALUControl,
 	input [1:0] StoreSrc,
-	input isSigned, isByte,
-	input PCRFSelect
+	input LoadByte, LoadSign,
+	input [1:0] ResultSrc,
+	input RegWrite, MemWrite,
+	input PCSrc, Link,
+	input isSLT, isU,
+    
+    // ----- UART CHANGE ----- //
+    // ------ UART ------- //
+    output wire [WIDTH-1:0] MEMORY_ADDR,
+
+    // ----- UART TX ----- //
+    // FOR sb to 0x0000_0404 (Uart Address)
+    output wire [7:0] UART_TRANSMIT_DATA,
+
+    // ----- UART RX ----- //
+    // FOR lw tfromo 0x0000_0404 (Uart Address)
+    input [WIDTH-1:0] UART_RECIEVE_DATA,
+    input SELECT_UART
+    // ----- UART CHANGE ----- //
 );
+
+// ----- UART CHANGE ----- //
+assign MEMORY_ADDR = ALUResult;
+assign UART_TRANSMIT_DATA = WriteData[7:0];
+// ----- UART CHANGE ----- //
+
 
 // PC Register
 wire [WIDTH-1:0] PCNext, PC;
@@ -28,24 +53,22 @@ Register_reset reg_PC (
 // PC Adders
 wire [WIDTH-1:0] PCPlus4, PCTarget;
 
-Adder adder_PCPlus4 (
+Adder #(.WIDTH(WIDTH)) adder_PCPlus4 (
     .DATA1(PC),
     .DATA2(32'd4),
     .DATA_OUT(PCPlus4)
 );
 
-Adder adder_PCTarget (
+Adder #(.WIDTH(WIDTH)) adder_PCTarget (
     .DATA1(PC),
     .DATA2(ImmExt),
     .DATA_OUT(PCTarget)
 );
 
 // PC MUX
-MUX_4to1 mux_PC (
+MUX_2to1 #(.WIDTH(WIDTH)) mux_PC (
     .DATA0(PCPlus4),
-    .DATA1(PCTarget),
-    .DATA2(Result),
-    .DATA3(32'b0),
+    .DATA1(Result),
     .SEL(PCSrc),
     .DATA_OUT(PCNext)
 );
@@ -63,26 +86,40 @@ assign Rs1 = INSTRUCTION[19:15];
 assign Rs2 = INSTRUCTION[24:20];
 assign Rd = INSTRUCTION[11:7];
 
+wire [4:0] Ra1;
+
+// RS1 MUX
+MUX_2to1 #(.WIDTH(5)) mux_RS1 (
+    .DATA0(Rs1),
+    .DATA1({(5){1'b0}}),
+    .SEL(ALUSrcA),
+    .DATA_OUT(Ra1)
+);
+
+// WD MUX
+MUX_2to1 #(.WIDTH(WIDTH)) mux_WD (
+    .DATA0(Result),
+    .DATA1(PCPlus4),
+    .SEL(Link),
+    .DATA_OUT(WD)
+);
 
 // Register File
-wire [WIDTH-1:0] RD1, RD2;
+wire [WIDTH-1:0] RD1, RD2, WD;
 
-Register_File register_file (
+Register_File #(.WIDTH(WIDTH)) register_file (
     .clk(clk),
     .WE(RegWrite),
     .reset(reset),
-    .Rs1(Rs1),
+    .Rs1(Ra1),
     .Rs2(Rs2),
     .Rd(Rd),
-    .WD(Result),
+    .WD(WD),
     .RD1(RD1),
     .RD2(RD2),
     .Debug_Source(Debug_Source),
     .Debug_Out(Debug_Out)
 );
-
-//MUX_2to1 mux_
-
 
 // Extender
 wire [WIDTH-1:0] ImmExt;
@@ -98,23 +135,25 @@ wire [WIDTH-1:0] SrcA, SrcB;
 
 assign SrcA = RD1;
 
-MUX_2to1 mux_SrcB (
+MUX_2to1 #(.WIDTH(WIDTH)) mux_SrcB (
     .DATA0(RD2),
     .DATA1(ImmExt),
-    .SEL(ALUSrc),
+    .SEL(ALUSrcB),
     .DATA_OUT(SrcB)
 );
 
 // ALU
 wire [WIDTH-1:0] ALUResult;
 
-ALU alu (
+ALU #(.WIDTH(WIDTH)) alu (
     .SrcA(SrcA),
     .SrcB(SrcB),
     .ALUControl(ALUControl),
+	.isSLT(isSLT), .isU(isU),
     .ALUResult(ALUResult),
-    .Zero(Zero)
+    .Zero(ZeroBit)
 );
+assign CMPBit = ALUResult[0];
 
 // Data Memory
 wire [WIDTH-1:0] ReadData, WriteData;
@@ -127,12 +166,12 @@ Memory_DATA mem_data (
     .RD(ReadData)
 );
 
-MUX_4to1 mux_store (
+MUX_4to1 #(.WIDTH(WIDTH)) mux_store (
     .SEL(StoreSrc),
-    .DATA0(SrcB),
-    .DATA1({ReadData[31:16], SrcB[15:0]}),
-    .DATA2({ReadData[31:8], SrcB[7:0]}),
-    .DATA3(32'b0),
+    .DATA0(RD2),
+    .DATA1(RD2),
+    .DATA2({ReadData[31:8], RD2[7:0]}),
+    .DATA3({ReadData[31:16], RD2[15:0]}),
     .DATA_OUT(WriteData)
 );
 
@@ -141,26 +180,28 @@ MUX_4to1 mux_store (
 wire [WIDTH-1:0] Result, ExtendedMemory, AfterPCSelect;
 
 Extender_Load extender_load (
-    .isSigned(isSigned),
-    .isByte(isByte),
+    .isSigned(LoadSign),
+    .isByte(LoadByte),
     .INPUT(ReadData),
     .OUTPUT(ExtendedMemory)
 );
 
-MUX_2to1 mux_PCSelection (
-    .SEL(PCRFSelect),
-    .DATA0(PCPlus4),
-    .DATA1(PCTarget),
-    .DATA_OUT(AfterPCSelect)
-
+// ----- UART CHANGE ----- //
+wire [WIDTH-1:0] ValidReadData;
+// UART RECEIVE WORD MUX
+MUX_2to1 #(.WIDTH(WIDTH)) mux_UART (
+    .DATA0(ReadData),
+    .DATA1(UART_RECIEVE_DATA),
+    .SEL(SELECT_UART),
+    .DATA_OUT(ValidReadData)
 );
+// ----- UART CHANGE ----- //
 
-
-MUX_4to1 mux_WriteData (
+MUX_4to1 #(.WIDTH(WIDTH)) mux_WriteData (
     .DATA0(ALUResult),
-    .DATA1(ReadData),
-    .DATA2(ExtendedMemory),
-    .DATA3(AfterPCSelect),
+	.DATA1(PCTarget),
+    .DATA2(ValidReadData),//.DATA2(ReadData), // ----- UART CHANGE ----- //
+    .DATA3(ExtendedMemory),
     .SEL(ResultSrc),
     .DATA_OUT(Result)
 );
