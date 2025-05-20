@@ -31,7 +31,7 @@ module UART_Peripheral(
 
     UART_FIFO uart_fifo_inst(
         .clk_100MHz(clk_100MHz),
-		.clk_Button(clk_Button),
+	    .clk_Button(clk_Button),
         .reset(reset),
         .DATA(RX_OUT),
         .write_enable(RX_Done),
