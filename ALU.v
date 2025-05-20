@@ -66,7 +66,7 @@ always @(*) begin
 			OVF = LOW;
 		end
 		ASR:begin
-			ASLUResult = SrcA >>> shamt;					/// ASR
+			ASLUResult = $signed(SrcA) >>> shamt;					/// ASR
 			CO = LOW;
 			OVF = LOW;
 		end
@@ -98,7 +98,4 @@ assign ALUResult = isSLT ? SLTResult : ASLUResult;
 
 assign Zero = ~(|ALUResult);
 
-endmodule	
-	
-	
- 
+endmodule

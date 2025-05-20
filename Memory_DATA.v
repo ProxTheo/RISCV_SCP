@@ -5,7 +5,17 @@ module Memory_DATA#(BYTE_SIZE=4, ADDR_WIDTH=32)(
 	output [(BYTE_SIZE*8)-1:0] RD 
 );
 
-reg [7:0] mem [0:255];
+localparam MEM_SIZE = 4096;
+
+reg [7:0] mem [0:MEM_SIZE-1];
+
+initial begin
+	integer kk;
+
+	for (kk = 0; kk < MEM_SIZE; kk = kk + 1) begin
+		mem[kk] <= 8'b0000_0000;
+	end
+end
 
 genvar i;
 generate
