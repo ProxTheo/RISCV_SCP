@@ -80,7 +80,7 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                 STOP_BIT: begin
 
                     if(baud_counter == 0) begin
-                        if (RX_Serial == 1'b1) begin
+                        if (RX_Serial == 1'b0) begin
                             RX_OUT <= RX_SHIFT_REG;
                             RX_Done <= 1;
                         end
