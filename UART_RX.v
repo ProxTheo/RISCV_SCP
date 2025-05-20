@@ -2,7 +2,7 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
     input clk, reset,
     input RX_Serial,
     output reg [7:0] RX_OUT,
-    output reg RX_done
+    output reg RX_Done
     );
 
     localparam DIV = FREQ / BAUDRATE;
@@ -19,11 +19,11 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                DATA = 2'b10,
                STOP_BIT = 2'b11;
 
-    always @(posedge clk or posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if (reset) begin
             state = IDLE;
             RX_OUT <= 0;
-            RX_done <= 0;
+            RX_Done <= 0;
             baud_counter <= 0;
             index = 0;
         end
@@ -34,9 +34,11 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                     if (RX_Serial == 1'b0) begin    
                         state <= START_BIT;
                         baud_counter <= DIV >> 1;
+								RX_Done <= 0;
                     end 
                     else begin
                         state <= IDLE;
+								RX_Done <= 0;
                     end
                 end
 
@@ -46,13 +48,16 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                             state <= DATA;
                             baud_counter <= DIV - 1;
                             index <= 0;
+									 RX_Done <= 0;
                         end 
                         else begin
                             state <= IDLE;
+									 RX_Done <= 0;
                         end
                     end 
                     else begin
                         baud_counter <= baud_counter - 1;
+								RX_Done <= 0;
                     end
                 end
 
@@ -64,9 +69,11 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                         if (index == 3'b111) begin
                             state <= STOP_BIT;
                         end
+								RX_Done <= 0;
                     end
                     else begin
                         baud_counter <= baud_counter - 1;
+								RX_Done <= 0;
                     end
                 end
 
@@ -75,12 +82,13 @@ module UART_RX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                     if(baud_counter == 0) begin
                         if (RX_Serial == 1'b1) begin
                             RX_OUT <= RX_SHIFT_REG;
-                            RX_done <= 1;
+                            RX_Done <= 1;
                         end
                         state <= IDLE;
                     end
                     else begin 
                         baud_counter <= baud_counter - 1;
+								RX_Done <= 0;
                     end
                 end
             endcase 

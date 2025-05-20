@@ -41,7 +41,7 @@ module UART_TX #(parameter FREQ = 100000000, BAUDRATE = 9600) (
                 end
             end
             else if (TX_Start) begin
-                TX_SHIFT_REG <= {1'b0, TX_DATA, 1'b0};
+                TX_SHIFT_REG <= {1'b1, TX_DATA, 1'b0};
                 TX_BUSY <= 1'b1;
                 index <= 0;
                 baud_counter <= 0;
