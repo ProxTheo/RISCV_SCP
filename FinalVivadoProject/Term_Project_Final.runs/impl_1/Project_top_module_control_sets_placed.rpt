@@ -1,0 +1,403 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Thu May 22 02:40:26 2025
+| Host         : DESKTOP-4904BLP running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Project_top_module_control_sets_placed.rpt
+| Design       : Project_top_module
+| Device       : xc7a100t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |   325 |
+|    Minimum number of control sets                        |   325 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    92 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |   325 |
+| >= 0 to < 4        |     9 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |   274 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     2 |
+| >= 14 to < 16      |     1 |
+| >= 16              |    36 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              11 |            7 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              64 |           34 |
+| Yes          | No                    | No                     |            2120 |         1320 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |            1201 |          888 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------------+---------------------------------------------------------------------------+----------------------------------------------------------------+------------------+----------------+--------------+
+|     Clock Signal     |                               Enable Signal                               |                        Set/Reset Signal                        | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------+---------------------------------------------------------------------------+----------------------------------------------------------------+------------------+----------------+--------------+
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_tx_inst/TX_Serial_i_2_n_0        | my_computer/datapath_inst/reg_PC/debouncer_count[0].out_reg[0] |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[3]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[2]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[5]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[0]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[4]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[6]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[7]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/p_0_in[1]                |                                                                |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/index[3]_i_1__0_n_0      | debouncer_0/buttons[0]                                         |                2 |              4 |         2.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_tx_inst/TX_Serial_i_2_n_0        | my_computer/datapath_inst/reg_PC/SR[0]                         |                2 |              5 |         2.50 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_133[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_47[0]                    |                                                                |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[14][7]_i_1_n_0  | debouncer_0/buttons[0]                                         |                4 |              8 |         2.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[5][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                8 |              8 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[13][7]_i_1_n_0  | debouncer_0/buttons[0]                                         |                5 |              8 |         1.60 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[11][7]_i_1_n_0  | debouncer_0/buttons[0]                                         |                3 |              8 |         2.67 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[9][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                4 |              8 |         2.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[4][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[7][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[12][7]_i_1_n_0  | debouncer_0/buttons[0]                                         |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[3][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                8 |              8 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[1][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[2][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[0][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                5 |              8 |         1.60 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[6][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                7 |              8 |         1.14 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[8][7]_i_1_n_0   | debouncer_0/buttons[0]                                         |                8 |              8 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[10][7]_i_1_n_0  | debouncer_0/buttons[0]                                         |                2 |              8 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/memory[15][7]_i_1_n_0  | debouncer_0/buttons[0]                                         |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_254[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_32[0]                    |                                                                |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/RX_OUT[7]_i_1_n_0        | debouncer_0/buttons[0]                                         |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_5[0]                     |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_39[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_51[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_29[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_31[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_49[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_50[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_54[0]                    |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_167[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_56[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_63[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_45[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_41[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_33[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_48[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_59[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_38[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_98[0]                    |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_97[0]                    |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_86[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_93[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_87[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_95[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_80[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_9[0]                     |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_91[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_81[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_92[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_94[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_89[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_84[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_96[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_83[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_88[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_99[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_90[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_82[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_125[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_11[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_103[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_113[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_126[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_127[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_130[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_131[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_13[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_109[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_120[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_85[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_111[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_104[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_100[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_118[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_1[0]                     |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_101[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_12[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_124[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_128[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_123[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_129[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_114[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_132[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_134[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_135[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_119[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_105[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_136[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_108[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_110[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_10[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_112[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_102[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_0[0]                     |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_106[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_115[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_116[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_122[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_107[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_117[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_121[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_178[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_156[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_137[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_181[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_148[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_138[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_17[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_159[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_18[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_182[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_184[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_146[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_188[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_162[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_141[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_179[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_187[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_147[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_142[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_169[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_189[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_190[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_193[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_185[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_149[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_151[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_170[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_166[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_174[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_176[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_154[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_180[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_186[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_191[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_168[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_19[0]                    |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_192[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_145[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_183[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_194[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_15[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_139[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_144[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_160[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_161[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_150[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_155[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_158[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_164[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_16[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_44[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_171[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_157[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_172[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_165[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_140[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_143[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_173[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_14[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_152[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_163[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_175[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_177[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_153[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_20[0]                    |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_196[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_206[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_202[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_205[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_218[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_224[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_197[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_227[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_23[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_199[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_2[0]                     |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_230[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_203[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_228[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_223[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_235[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_236[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_237[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_240[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_241[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_242[0]                   |                                                                |                1 |              8 |         8.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_210[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_219[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_233[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_215[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_243[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_213[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_216[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_225[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_201[0]                   |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_226[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_238[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_211[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_239[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_24[0]                    |                                                                |                1 |              8 |         8.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_244[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_245[0]                   |                                                                |                1 |              8 |         8.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_195[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_246[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_247[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_248[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_249[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_22[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_234[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_25[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_250[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_222[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_251[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_214[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_208[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_204[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_229[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_217[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_212[0]                   |                                                                |                2 |              8 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_220[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_207[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_209[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_200[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_231[0]                   |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_198[0]                   |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_221[0]                   |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_232[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_21[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_66[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_67[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_7[0]                     |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_3[0]                     |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_71[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_72[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_74[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_75[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_42[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_46[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_53[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_57[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_58[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_70[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_73[0]                    |                                                                |                3 |              8 |         2.67 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_76[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_37[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_252[0]                   |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_27[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_34[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_36[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_52[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_55[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_62[0]                    |                                                                |                1 |              8 |         8.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_64[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_65[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_40[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_6[0]                     |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_61[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_253[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_69[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_60[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_77[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_4[0]                     |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_68[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_30[0]                    |                                                                |                5 |              8 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_26[0]                    |                                                                |                7 |              8 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_255[0]                   |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_78[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_79[0]                    |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_8[0]                     |                                                                |                6 |              8 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_35[0]                    |                                                                |                4 |              8 |         2.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_43[0]                    |                                                                |                8 |              8 |         1.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/mem[255][7]_i_7_28[0]                    |                                                                |                6 |              8 |         1.33 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/reg_PC/TX_BUSY_reg                              | debouncer_0/buttons[0]                                         |                2 |              9 |         4.50 |
+|  CLK100MHZ_IBUF_BUFG |                                                                           |                                                                |                7 |             11 |         1.57 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_fifo_inst/write_pointer0         | debouncer_0/buttons[0]                                         |                3 |             12 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/E[0]                                     | debouncer_0/buttons[0]                                         |                3 |             12 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_tx_inst/E[0]                     | my_computer/datapath_inst/reg_PC/SR[0]                         |                4 |             14 |         3.50 |
+|  CLK100MHZ_IBUF_BUFG | my_computer/datapath_inst/Uart_inst/uart_rx_inst/baud_counter[15]_i_1_n_0 | debouncer_0/buttons[0]                                         |                3 |             16 |         5.33 |
+|  CLK100MHZ_IBUF_BUFG | debouncer_0/debouncer_count[4].count[4][0]_i_1_n_0                        |                                                                |                8 |             32 |         4.00 |
+|  buttons_BUFG[4]     |                                                                           | debouncer_0/buttons[0]                                         |               25 |             32 |         1.28 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_10[0]                    | debouncer_0/buttons[0]                                         |               17 |             32 |         1.88 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_11[0]                    | debouncer_0/buttons[0]                                         |               23 |             32 |         1.39 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_15[0]                    | debouncer_0/buttons[0]                                         |               27 |             32 |         1.19 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_29[0]                    | debouncer_0/buttons[0]                                         |               28 |             32 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_7[0]                     | debouncer_0/buttons[0]                                         |               20 |             32 |         1.60 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_32[0]                    | debouncer_0/buttons[0]                                         |               26 |             32 |         1.23 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_20[0]                    | debouncer_0/buttons[0]                                         |               26 |             32 |         1.23 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_17[0]                    | debouncer_0/buttons[0]                                         |               24 |             32 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_14[0]                    | debouncer_0/buttons[0]                                         |               24 |             32 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_23[0]                    | debouncer_0/buttons[0]                                         |               26 |             32 |         1.23 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_21[0]                    | debouncer_0/buttons[0]                                         |               28 |             32 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_26[0]                    | debouncer_0/buttons[0]                                         |               22 |             32 |         1.45 |
+|  CLK100MHZ_IBUF_BUFG |                                                                           | mssd_0/idx_0                                                   |                9 |             32 |         3.56 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_9[0]                     | debouncer_0/buttons[0]                                         |               24 |             32 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_6[0]                     | debouncer_0/buttons[0]                                         |               24 |             32 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_19[0]                    | debouncer_0/buttons[0]                                         |               21 |             32 |         1.52 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_5[0]                     | debouncer_0/buttons[0]                                         |               28 |             32 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_18[0]                    | debouncer_0/buttons[0]                                         |               24 |             32 |         1.33 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_12[0]                    | debouncer_0/buttons[0]                                         |               26 |             32 |         1.23 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_24[0]                    | debouncer_0/buttons[0]                                         |               25 |             32 |         1.28 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_34[0]                    | debouncer_0/buttons[0]                                         |               21 |             32 |         1.52 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_13[0]                    | debouncer_0/buttons[0]                                         |               26 |             32 |         1.23 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_16[0]                    | debouncer_0/buttons[0]                                         |               23 |             32 |         1.39 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_22[0]                    | debouncer_0/buttons[0]                                         |               30 |             32 |         1.07 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_25[0]                    | debouncer_0/buttons[0]                                         |               28 |             32 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_27[0]                    | debouncer_0/buttons[0]                                         |               25 |             32 |         1.28 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_33[0]                    | debouncer_0/buttons[0]                                         |               23 |             32 |         1.39 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_35[0]                    | debouncer_0/buttons[0]                                         |               28 |             32 |         1.14 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_28[0]                    | debouncer_0/buttons[0]                                         |               25 |             32 |         1.28 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_30[0]                    | debouncer_0/buttons[0]                                         |               26 |             32 |         1.23 |
+|  CLK100MHZ_IBUF_BUFG | debouncer_0/count[0]0                                                     |                                                                |                8 |             32 |         4.00 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_31[0]                    | debouncer_0/buttons[0]                                         |               27 |             32 |         1.19 |
+|  buttons_BUFG[4]     | my_computer/datapath_inst/reg_PC/DATA_OUT_reg[7]_8[0]                     | debouncer_0/buttons[0]                                         |               28 |             32 |         1.14 |
++----------------------+---------------------------------------------------------------------------+----------------------------------------------------------------+------------------+----------------+--------------+
+
+
