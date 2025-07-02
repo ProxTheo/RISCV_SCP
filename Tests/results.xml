@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1747870237" />
-    <testcase name="riscv_single_cycle_test" classname="Single_Cycle_Test_riscv" file="C:\Users\bahar\Desktop\EE446_2515583_2516151_code\EE446_2515583_2516151_code\Tests\Single_Cycle_Test_riscv.py" lineno="258" time="1.9301271438598633" sim_time_ns="490000.001" ratio_time="253869.28656943256" />
+    <property name="random_seed" value="1751465057" />
+    <testcase name="riscv_single_cycle_test" classname="Single_Cycle_Test_riscv" file="C:\Users\bahar\Documents\GitHub\RISCV_SCP\Tests\Single_Cycle_Test_riscv.py" lineno="258" time="0.23109793663024902" sim_time_ns="490000.001" ratio_time="2120313.180398438" />
   </testsuite>
 </testsuites>
